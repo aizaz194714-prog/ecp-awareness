@@ -1,0 +1,9 @@
+/* Preserve the supplied 1102×1426 artwork without crop or distortion. */
+.game-app .maze{
+  width:min(100%,calc((100svh - 250px)*1102/1426))!important;
+  height:auto!important;
+  max-width:100%!important;
+  max-height:100%!important;
+  aspect-ratio:1102/1426!important;
+}
+@media(max-height:680px){.game-app .maze{width:min(100%,calc((100svh - 205px)*1102/1426))!important}}

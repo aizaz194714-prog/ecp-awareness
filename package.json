@@ -1,0 +1,1 @@
+{"name":"ecp","version":"3.0.0","private":true,"description":"SQLite-backed ECP voter awareness platform with administration","scripts":{"start":"node server.js","test":"node --test"},"engines":{"node":">=22.5"}}

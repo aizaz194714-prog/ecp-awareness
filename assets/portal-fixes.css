@@ -1,0 +1,3 @@
+/* Crop the official emblem from the supplied ECP artwork. */
+.seal-crop img{width:600px!important;left:-66px!important;top:-70px!important}
+@media(max-width:720px){.seal-crop img{width:520px!important;left:-57px!important;top:-60px!important}}

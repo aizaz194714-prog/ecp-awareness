@@ -1,0 +1,72 @@
+<!doctype html>
+<html><head><title>Maze Coordinate Tester</title></head>
+<body>
+<canvas id="c" width="1102" height="1426"></canvas>
+<pre id="out"></pre>
+<script>
+const W=1102, H=1426;
+const c = document.getElementById('c');
+const ctx = c.getContext('2d', {willReadFrequently:true});
+const img = new Image();
+img.onload = () => {
+  ctx.drawImage(img, 0, 0, W, H);
+  const R = 9;
+  let out = '';
+  
+  // Check current spawn
+  function check(name, x, y) {
+    const d = ctx.getImageData(x, y, 1, 1).data;
+    const dirs = [[0,0],[R,0],[-R,0],[0,R],[0,-R],[R*.7,R*.7],[-R*.7,R*.7],[R*.7,-R*.7],[-R*.7,-R*.7]];
+    const wallCount = dirs.filter(([dx,dy]) => {
+      const px = Math.round(x+dx), py = Math.round(y+dy);
+      if(px<0||py<0||px>=W||py>=H) return true;
+      return ctx.getImageData(px, py, 1, 1).data[0] > 128;
+    }).length;
+    out += name + ': pixel=' + d[0] + ' wall=' + (d[0]>128) + ' wallCount=' + wallCount + '/9 canMove=' + (wallCount===0) + '\n';
+  }
+  
+  check('Current spawn (220,350)', 220, 350);
+  
+  // Scan entrance area
+  out += '\n--- Valid entrance positions (R=9) ---\n';
+  for(let y=200; y<=350; y+=5) {
+    for(let x=190; x<=300; x+=5) {
+      const dirs = [[0,0],[R,0],[-R,0],[0,R],[0,-R],[R*.7,R*.7],[-R*.7,R*.7],[R*.7,-R*.7],[-R*.7,-R*.7]];
+      const wc = dirs.filter(([dx,dy]) => {
+        const px = Math.round(x+dx), py = Math.round(y+dy);
+        if(px<0||py<0||px>=W||py>=H) return true;
+        return ctx.getImageData(px, py, 1, 1).data[0] > 128;
+      }).length;
+      if(wc === 0) out += '  (' + x + ', ' + y + ')\n';
+    }
+  }
+  
+  // Scan checkpoint areas
+  function scanArea(label, x1, y1, x2, y2) {
+    out += '\n--- ' + label + ' ---\n';
+    let found = [];
+    for(let y=y1; y<=y2; y+=10) {
+      for(let x=x1; x<=x2; x+=10) {
+        const dirs = [[0,0],[R,0],[-R,0],[0,R],[0,-R]];
+        const wc = dirs.filter(([dx,dy]) => {
+          const px = Math.round(x+dx), py = Math.round(y+dy);
+          if(px<0||py<0||px>=W||py>=H) return true;
+          return ctx.getImageData(px, py, 1, 1).data[0] > 128;
+        }).length;
+        if(wc === 0) found.push('(' + x + ',' + y + ')');
+      }
+    }
+    out += 'Found: ' + found.length + '\n' + found.join(' ') + '\n';
+  }
+  
+  scanArea('Home/CNIC', 350, 180, 550, 350);
+  scanArea('Polling Station', 650, 350, 870, 550);
+  scanArea('Presiding Officer', 700, 520, 950, 720);
+  scanArea('Ballot Paper', 650, 680, 900, 830);
+  scanArea('Cast Vote', 650, 830, 900, 1020);
+  
+  document.getElementById('out').textContent = out;
+};
+img.src = '../assets/maze-collision.png';
+</script>
+</body></html>
