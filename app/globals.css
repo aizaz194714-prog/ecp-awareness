@@ -1,0 +1,4 @@
+@import "../assets/app.css";
+@import "../assets/guide.css";
+
+.dark-spinner{display:inline-block;border-color:#c6ddd4;border-top-color:#075844}.loading-copy{margin-top:14px}.button-link{border:0;background:transparent}.page-error{padding:14px 18px;margin:18px;border-radius:14px;background:#fff0f0;color:var(--danger);font-weight:700}.resource-link-arrow::after{content:"↗"}.btn::after{content:"→"}.btn.no-arrow::after{display:none}.status-actions{display:flex;gap:10px;flex-wrap:wrap}.status-actions .btn{flex:1;min-width:180px}.skip-link{position:fixed;left:12px;top:-60px;z-index:100;background:#fff;padding:10px 14px;border-radius:10px}.skip-link:focus{top:12px}

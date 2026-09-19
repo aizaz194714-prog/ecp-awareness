@@ -1,0 +1,14 @@
+.env
+.venv
+database
+migrations
+scripts
+/admin-dashboard-1366.png
+/index-desktop-1366.png
+/index-mobile-390.png
+/learn-desktop-1366.png
+/maze-desktop-1366.png
+/maze-mobile-390.png
+/screenshot-desktop-1366.png
+/screenshot-mobile-390.png
+WIREFRAMES.md
