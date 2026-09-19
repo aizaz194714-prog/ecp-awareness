@@ -1,1 +1,29 @@
-{"name":"ecp","version":"3.0.0","private":true,"description":"SQLite-backed ECP voter awareness platform with administration","scripts":{"start":"node server.js","test":"node --test"},"engines":{"node":">=22.5"}}
+{
+  "name": "ecp",
+  "version": "4.0.0",
+  "private": true,
+  "description": "Next.js and Supabase-powered ECP voter awareness application",
+  "scripts": {
+    "dev": "next dev --port 3000",
+    "build": "next build",
+    "start": "next start --port 3000",
+    "migrate:sqlite": "node --env-file-if-exists=.env scripts/migrate-sqlite.js",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "next": "^16.3.5",
+    "pg": "^8.16.3",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "@types/pg": "^8.15.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "typescript": "^5.9.0"
+  },
+  "engines": {
+    "node": ">=22.5"
+  }
+}
